@@ -1,0 +1,92 @@
+<%- include ('../partials/header') %>
+<div class="container my-5">
+    <header>
+      <a href="/shoptify/" class="btn bg-success"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Shop Again</a> 
+        <div class="float-sm-right">             
+    </div>
+    </header>
+    <hr>
+    
+    <div class="card-group">
+      <div class="col">
+        <h1 class="display-4 h3">
+         My Cart
+         <p class="cart-list">
+          <small class="text-muted">*Make sure to click the plus button to see total when adding quantity.</small>
+        </p> 
+        </h1>
+        <hr>
+              <div class="card" style="width: 15rem;">
+                  <ul class="list-group list-group-flush">      
+                      <input type="hidden" value="<%= subtotal = 0 %>" ><!-- initiallize total to 0 -->
+                      <input type="hidden" value="<%= items = 0 %>" ><!-- initiallize total to 0 -->
+                      <% for (let carts of cart) { %>
+                        <% if (authorized && (typeof carts.user === 'undefined' || carts.user.email === email)) { %>
+                          <input type="hidden" value="<%= subtotal = subtotal + carts.price * carts.quantity %>" ><!-- get the total amount in the cart -->
+                          <input type="hidden" value="<%= items += 1 %>" > <!-- get the number of items in cart -->
+                          <li class="list-group-item display-4 text-uppercase h3">
+                                  <%= carts.product %>                        
+                                  <div class="float-sm-right"> 
+                                      <form class="form-inline" action="/cart/delete" method="post" onsubmit="return confirm('Are you sure you want to this to cart?');">
+                                          <input type="hidden" value="<%= carts.id %>" name="id">                      
+                                              <button class="btn bg-danger" type="submit"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>                                                                   
+                                      </form>
+                                  </div>
+                          </li>
+                          <li class="list-group-item display-4 h5">
+                            <form action="/cart/update" , method="POST">
+                                <input type="hidden" name="id" value="<%= carts.id %>">
+                                <input type="hidden" name="product_id" value="123">
+                                <input type="hidden" name="product" value="<%= carts.product %>">
+                                <input type="hidden"  name="price" id="price"  value="<%= carts.price %>">
+                                <input type="hidden"  name="category"  value="<%= carts.category %>">
+                                    <p class="cart-list">
+                                      ○ $ <%= carts.price %> × 
+                                      <input type="number" required placeholder="Qty" min=1 value="<%= carts.quantity %>" name="quantity" Style="width:40px;"> item/s 
+                                      <button type="submit"  class="btn bg-success float-sm-right"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                                    </p>                                  
+                                    <p class="cart-list">
+                                        ○ Total: $ <%= carts.price * carts.quantity %>
+                                     </p>  
+                            </form>                 
+                          </li>
+                      <%} } %>
+
+                  </ul>
+              </div>
+    </div>    
+    <div class="col">
+      <div class="card float-sm-right"  style="width: 14rem;">
+        <ul class="list-group list-group-flush"> 
+          <li class="list-group-item display-4 h3" >
+            Summary:
+            <div class="float-sm-right"><i class="fa fa-shopping-cart" aria-hidden="true"><%= items %></i></div>
+          </li>    
+          <li class="list-group-item display-4 h5" >
+            Sub-Total: (<%= items %> items) $ <%= subtotal %> <br><br>
+            Shipping: $ <%= shipping = 2.22 %> <br><br>
+            Tax : $ <%= tax = subtotal * 0.03 %>
+          </li>
+          <li class="list-group-item display-4 h5">
+            Total : $ <%=  subtotal + shipping +  tax%> 
+          </li>
+          <li class="list-group-item display-4 h5">
+            <label for="fname">Accepted Cards</label>
+            <div class="icon-container">
+              <i class="fa fa-cc-visa" style="color:navy;"></i>
+              <i class="fa fa-cc-amex" style="color:blue;"></i>
+              <i class="fa fa-cc-mastercard" style="color:red;"></i>
+              <i class="fa fa-cc-discover" style="color:orange;"></i>
+            </div>
+            <br>
+            <div class="text-center">
+              <a href="#" class="btn bg-success">Proceed to Checkout</a> 
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+</div>
+<%- include ('../partials/footer') %>   
+

@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top">
+  <a class="navbar-brand" href="/">Shoppy.com</a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <!-- if (authorized) { }-->
+      <li class="nav-item">
+        <a class="nav-link" href="/shoptify">Products</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" id="blogsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          My Cart
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="adminDropdown">
+          <a href="/cart/" class="dropdown-item">View Cart</a>
+          <a href="#" class="dropdown-item">Order History</a>
+          <!-- <div class="dropdown-divider"></div> -->
+
+      </li> 
+    </ul>
+    <ul class="navbar-nav">
+      <form action="/shoptify" ,  method="GET" class="form-inline my-5 my-lg-0">
+        <select name="category" class="category" >
+          <option value="">All</option>
+        </select>
+        <input type="text" name="text" class="search" placeholder="Search Products" aria-label="Search">
+        <button class="btnSearch my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+      </form>  
+    </ul>
+    <ul class="navbar-nav">
+      <% if (!authorized) {%>
+        <li class="nav-item">
+          <a href="/register" class="nav-link">
+            <i class="fa fa-user-plus"></i>
+            Register
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="/login" class="nav-link">
+            <i class="fa fa-sign-in"></i>
+            Login
+          </a>
+        </li>
+      <%} else { %>
+        <li class="nav-item">
+          <a href="/logout" class="nav-link">
+            <i class="fa fa-sign-out"></i>
+            Logout
+          </a>
+        </li>
+      <%}%>
+    <!-- } -->
+    </ul>
+  </div>
+</nav>

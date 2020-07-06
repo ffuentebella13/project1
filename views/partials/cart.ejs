@@ -1,0 +1,14 @@
+<div class="card pull-right cart" >
+    <div class="card-body">
+      <h5 class="card-title">Cart: </h5>
+      <h6 class="card-subtitle mb-2 text-muted">Total:</h6>
+      <p class="card-text" align="center">
+        <a href="../cart/" class="card-link"> View Cart </a>
+        <a href="#" class="card-link"> Checkout </a>
+    </p>
+    </div>
+  <% for (let carts of cart) { %>
+     <%= carts.product %>       
+
+  <%}%>
+</div>

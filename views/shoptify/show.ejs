@@ -1,0 +1,44 @@
+<%- include ('../partials/header') %>
+<div class="container my-5">
+    <hr>
+    <header>
+        <h1 class="display-4"><%= shoptify.product %> 
+            <span class="badge badge-light pull-right price"><sup>CDN $</sup>
+                <%= shoptify.price %><br>
+                <span class="badge badge-danger badgeIcon">
+                    <%= shoptify.stocks %> in Stocks
+                </span>
+            </span>
+        </h1>
+          <div class="dropdown">
+             / <%= shoptify.category %>
+            <a class="dropdown-toggle float-left" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-cogs" aria-hidden="true"></i>
+            </a>                 
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">                     
+                <form class="form-inline" action="/shoptify/delete" method="post" onsubmit="return confirm('Are you sure you want to delete all your hard work?');">
+                  <input type="hidden" value="<%= shoptify.id %>" name="id">   
+                      <a class="dropdown-item" href="new/"><i class="fa fa-plus-square" aria-hidden="true"></i> New </a>   
+                      <% if (authorized && (typeof shoptify.user === 'undefined' || shoptify.user.email === email)) { %>                 
+                      <a href="/shoptify/<%= shoptify.id %>/edit" class="dropdown-item"><i class="fa fa-pencil"></i> Update </a> 
+                      <button class="dropdown-item" type="submit"><i class="fa fa-trash"></i> Remove </button>                                
+                      <% } %>  
+                    </form> 
+            </div>
+          </div>
+        <hr>
+    </header>
+        <h5 class="card-header display-4 h5">
+        <div class="card-body">
+          <p class="card-text"></p><%- shoptify.description %></p> 
+          <a href="/shoptify/" class="btn bg-primary"> Products <i class="fa fa-eye" aria-hidden="true"></i></a>      
+        </div>
+        <div class="card-footer text-muted h5">
+            <%= shoptify.createdAt %>
+            <p><strong>Seller: <%= shoptify.user.fullname %></strong></p>
+        </div>
+      </div>
+</div>
+
+
+<%- include ('../partials/footer') %>

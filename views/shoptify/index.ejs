@@ -1,0 +1,94 @@
+<%- include ('../partials/header') %>
+<div class="container my-5">
+<input type="hidden" value="<%= total = 0 %>" ><!-- initiallize total to 0 -->
+<input type="hidden" value="<%= items = 0 %>" ><!-- initiallize total to 0 -->
+
+<% for (let carts of cart) {%>
+  <% if (authorized && (typeof carts.user === 'undefined' || carts.user.email === email)) { %>
+  <input type="hidden" value="<%= total = total + carts.price * carts.quantity %>" > <!-- get the total from the cart -->
+  <input type="hidden" value="<%= items += 1 %>" > <!-- get the number of items in cart -->
+<%}}%>
+    <header style="height:90px; ">
+      <div class="card-body bg-light mb-3 float-sm-left">
+        <% if (authorized) { %>
+        <h5 class="float-sm-left display-4 h5">Welcome, <%= email %></h5>
+         <%}%>
+        <h1 class="display-4">
+          Today's Deals
+        </h1>
+        <!-- Dont show the add button when not signed in-->
+        <a href="/shoptify/new" class="btn bg-success"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Post New </a> 
+      </div>
+      
+      <div class="card-body bg-light mb-3 float-sm-right">
+        <div class="card-header display-4 h2">
+            <h5 class="card-title">My Cart </h5>
+            <h6 class="card-subtitle mb-2 text-muted">           
+              Total: $ <%= total %>
+            </h6>
+            <hr>
+            <a href="/cart/" class="btn btn-primary">
+              View Cart <span class="badge badge-danger"> <%= items %></span>
+            </a>
+            <a href="#" class="btn bg-success">Check-out</a>
+        </div>
+    </div>
+    </header>
+    <div class="row">
+      <br><br><br><br><br>
+    </div>
+    <div class="row">
+        <% for (let product of shoptify) { %>
+            <div class="col-lg-3 d-flex align-items-stretch">
+                <div class="card" style="margin: 10">
+                    <div class="card-header display-4 h2">
+                        <%= product.product %>
+                        <span class="badge badge-light pull-right price"><sup>CDN $</sup><%= product.price %></span>
+                        <small class="text-muted">~ <%= product.user.fullname %></small>
+                      </div>
+                  <div class="card-body ">
+                    <p class="cart-list">
+                      <small class="text-muted"><%= product.synopsis %></small>
+                      <br>
+                      <a href="/shoptify/<%= product.id %>">Continue...</a> 
+                    </p>     
+                  </div>
+                  <div class="card-footer text-muted" >         
+                    <form action="/shoptify/updateCart" , method="POST">
+                      <input type="hidden" name="product_id" value="<%= product.id %>">
+                      <input type="hidden" name="product" value="<%= product.product %>">
+                      <input type="hidden"  name="price" id="price"  value="<%= product.price %>">
+                      <input type="hidden"  name="category"  value="<%= product.category %>">
+                      <input type="number" min=1 required placeholder="Qty" name="quantity" Style="width:48px;" >                         
+                      <button type="submit" id="submit" class="cartBtn bg-success"> Add to Cart <i class="fa fa-cart-plus" aria-hidden="true"></i></button>  
+                    </form>
+                  </div>
+                  <!-- Dont show this buttons when not login-->
+              
+                  <div class="card-footer text-muted">
+                        <small>
+                            <div class="dropdown">
+                              <a class="dropdown-toggle pull-right" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-cogs" aria-hidden="true"></i>
+                              </a>                 
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">                     
+                                  <form class="form-inline" action="/shoptify/delete" method="post" onsubmit="return confirm('Are you sure you want to delete all your hard work?');">
+                                    <input type="hidden" value="<%= product.id %>" name="id">   
+                                        <a class="dropdown-item" href="#"><i class="fa fa-search" aria-hidden="true"></i> Read </a>   
+                                        <% if (authorized && (typeof product.user === 'undefined' || product.user.email === email)) { %>                 
+                                        <a href="/shoptify/<%= product.id %>/edit" class="dropdown-item"><i class="fa fa-pencil"></i> Update </a> 
+                                        <button class="dropdown-item" type="submit"><i class="fa fa-trash"></i> Remove </button>                                
+                                        <% } %>  
+                                      </form> 
+                              </div>
+                            </div>
+                            <%= product.stocks %> items Left
+                        </small>                       
+                  </div>
+                </div>
+              </div>
+        <% } %>
+    </div>
+</div>
+<%- include ('../partials/footer') %>   
+

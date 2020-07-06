@@ -1,0 +1,155 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+header:not(.home-cta), .alert {
+  margin-top: 80px;
+}
+
+.home-cta {
+  background: url(../images/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home-cta::after {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  width: 100%;
+  content: "";
+}
+
+.home-cta > h1 {
+  color: #fff;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  font-size: 10rem;
+  text-align: center;
+  z-index: 1;
+}
+
+.badgeIcon{
+  font-size: 14px;
+}
+
+.h5{
+  text-align: center;
+  font-size:22px;
+}
+.price{
+  font-size:18px;
+  font-weight:100;
+  color:red;
+}
+a{
+  text-decoration: none;
+  color:#000;
+}
+.btn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right:1;
+}
+.cartBtn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 3px 7px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right:1;
+}
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: RoyalBlue;
+}
+.title-bar{
+  font-size:34px;
+}
+.small{
+  font-size:18px;
+}
+
+.cart{
+  margin-top:-23;
+  margin-right:-118;
+  font-size:14px;
+  width:250px;
+  height:105px
+}
+.h2{
+  text-align: left;
+  font-weight: 700;
+  font-size:14px;
+}
+.h3{
+  font-size:18px;
+  font-weight: 500;
+}
+.h4{
+  font-size:13px;
+  font-weight: 500;
+}
+.h5{
+  text-align: left;
+  font-weight: 400;
+  font-size:14px;
+}
+.h6{
+  font-style: oblique;
+  font-size:12px;
+}
+sup{
+  font-weight:500;
+}
+.total{
+  width:80px;
+  border: 0;
+}
+
+.cartTotal{
+  font-weight:400;
+  font-size:20px;
+  color:red;
+}
+.search{
+  float: right;
+  border: none;
+  text-align: left;
+  font-size: 16px;
+  width:400px;
+  height:30px;
+}
+input[type=text]:focus{
+  outline: 2px solid orange;     /* oranges! yey */
+}
+.category{
+  float: right;
+  border: none;
+  text-align: left;
+  padding: 3.5px 4px;
+}
+.btnSearch {
+  background-color: #FFA800;
+  border: none;
+  color: #000;
+  padding: 7px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right:80;
+}
+}
+
+.btnSearch:hover {
+  background-color: RoyalBlue;
+}
+
+.dropdown-item:hover {
+  color:red;
+}

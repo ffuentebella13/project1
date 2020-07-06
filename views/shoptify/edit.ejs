@@ -1,0 +1,12 @@
+<%- include ('../partials/header') %> 
+<div class="container my-5">
+    <header>
+        <h1 class="display-4 title-bar text-muted"><small class="text-muted small">Edit: </small><%= formData.product %></h1>
+    </header>
+    <hr>
+    <div>
+        <%- include ('./_form',{ actionPath: '/shoptify/update'}) %>
+    </div>
+</div>
+
+<%- include ('../partials/footer') %>   

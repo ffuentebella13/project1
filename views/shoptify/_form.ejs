@@ -1,0 +1,38 @@
+<form action="<%= (typeof actionPath === 'undefined') ? '/shoptify' : actionPath%>", method="POST">
+    <% if (typeof actionPath !== 'undefined') { %>
+        <input type="hidden" name="id" value="<%= formData.id%>">
+    <% } %>
+   
+    <div class="form-group">
+        <label for="product">Product</label>
+        <input type="text" name="product" class="form-control" value="<%= formData.product %>">
+    </div>
+    <div class="form-group">
+        <label for="price">Price</label>
+        <input type="number" name="price" step="0.01" min="0"  class="form-control" value="<%= formData.price %>">
+    </div>
+    <div class="form-group">
+        <label for="stocks">Stocks</label>
+        <input type="number" name="stocks" class="form-control" value="<%= formData.stocks %>">
+    </div>
+    <div class="form-group">
+        <label for="decription">description</label>
+        <textarea name="description" class="form-control summernote">
+           <%= formData.description %>
+        </textarea>
+    </div>
+    <div class="form-group">
+        <label for="category">Category</label>
+        <select name="category" class="form-control">
+          <option value="BEVERAGE">Beverage</option>
+          <option value="CANNED">Canned</option>
+          <option value="HEALTH">Health</option>
+          <option value="GADGET">Gadgets</option>
+          <option <%= formData.category && formData.category === 'FROZEN' ? 'selected' : null %> value="FROZEN">Frozen</option>
+        </select>
+      </div>
+    <div class="form-group">
+        <button class="btn btn-dark">Submit</button>
+    </div>
+
+</form>
