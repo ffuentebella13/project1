@@ -133,10 +133,10 @@ exports.update = async (req, res) => {
      await Shoptify.validate(attributes);
      await Shoptify.findByIdAndUpdate(attributes.id, attributes);
 
-      req.flash('success', 'The blog was updated successfully');
+      req.flash('success', 'The Product was updated successfully');
       res.redirect(`/shoptify/${req.body.id}`);
     } catch (error) {
-      req.flash('danger', `There was an error updating this blog: ${error}`);
+      req.flash('danger', `There was an error updating this Product: ${error}`);
       res.redirect(`/shoptify/${req.body.id}/edit`);
     }
   };
@@ -144,7 +144,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
     try{
         await Shoptify.deleteOne({_id: req.body.id});
-        req.flash('success', 'The blog was deleted successfully');
+        req.flash('success', 'The Product was deleted successfully');
         res.redirect(`/shoptify`);
     }
     catch (error){

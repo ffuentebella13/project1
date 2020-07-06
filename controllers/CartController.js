@@ -56,7 +56,7 @@ exports.update = async (req, res) => {
       req.flash('success', 'The Qty was updated successfully');
       res.redirect(`/cart`);
     } catch (error) {
-      req.flash('danger', `There was an error updating this blog: ${error}`);
+      req.flash('danger', `There was an error updating this Cart: ${error}`);
       res.redirect(`/cart`);
     }
   };
