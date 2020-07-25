@@ -28,8 +28,11 @@ const ProductSchema = new mongoose.Schema({
         required: true
     }
     
-},{
-timestamps: true
+}, {
+    timestamps: true,
+    toJSON: {
+      getters: true
+    }
 });
 
 //Query Helpers
@@ -64,7 +67,7 @@ ProductSchema.virtual('synopsis')
     const text = this.description;
     return text
     .replace(/(<([^>]+)>)/ig,"")
-    .substring(0, 270);
+    .substring(0, 120);
 });
 
 

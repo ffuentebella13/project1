@@ -15,5 +15,6 @@ module.exports = router => {
     router.get('/shoptify/:id/edit', auth, edit);
     router.get('/shoptify/:id', show);
     router.post('/shoptify/updateCart', updateCart);
+    
 
 }

@@ -7,8 +7,7 @@ const CartSchema = new mongoose.Schema({
         required: true
       },
     product_id:{
-        type: String,
-        required: true //this should be left no blank or null
+        type: String
     },
     product:{
         type: String,
@@ -26,8 +25,11 @@ const CartSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-},{
-timestamps: true
+}, {
+    timestamps: true,
+    toJSON: {
+      getters: true
+    }
 });
 
 
